@@ -25,7 +25,7 @@ const AllProducts = async () => {
       </div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
-          <Link key={product.id} href={`/products/${product.slug}`} className="rounded-xl border border-base-300 bg-base-100 p-4 transition hover:-translate-y-1 hover:border-green-600">
+          <Link key={product.id} href={`/products/${product.id}`} className="rounded-xl border border-base-300 bg-base-100 p-4 transition hover:-translate-y-1 hover:border-green-600">
             <div className="flex items-center gap-3">
               <span className="rounded-xl bg-base-200 p-3 text-2xl">{product.image}</span>
               <div>

@@ -24,7 +24,7 @@ const CategoryProducts = async ({ params }: { params: Promise<{ categoryId: stri
 
   return (
     <main className="min-h-screen bg-[#f0f5f0] px-4 py-6">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-7xl">
         <section className="mb-5 flex items-center gap-3 rounded-2xl border border-[#e0e8e0] bg-[#fbfdfb] px-5 py-5">
           <span className="text-3xl">{category?.categoryIcon ?? "🛒"}</span>
           <div>

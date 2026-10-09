@@ -42,7 +42,7 @@ const CategoryProductList = ({ products }: { products: IProduct[] }) => {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {sortedProducts.map((product) => (
-          <Link href={`/products/${product.slug}`} key={product.id} className="rounded-2xl border border-[#e0e8e0] bg-[#fbfdfb] p-4 transition hover:-translate-y-1 hover:shadow-md">
+          <Link href={`/products/${product.id}`} key={product.id} className="rounded-2xl border border-[#e0e8e0] bg-[#fbfdfb] p-4 transition hover:-translate-y-1 hover:shadow-md">
             <div className="mb-3 flex items-center gap-3">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f0f5f0] text-2xl">{product.image || product.categoryIcon}</div>
               <div>

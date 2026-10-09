@@ -9,7 +9,7 @@ export default function Navbar() {
     return (
         <div>
             <nav className="w-full border-b border-gray-100">
-                <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6">
+                <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
                     <Link href="/" className="flex items-center gap-2">
                         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-green-700 text-white">
                             <Image src={Logo} alt="Logo"></Image>

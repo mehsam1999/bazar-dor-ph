@@ -14,18 +14,18 @@ interface IProduct {
 }
 
 const AllProducts = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products")
+  const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products")
   const products: IProduct[] = await res.json()
 
   return (
     <section id="সব-পণ্য" className="mx-auto max-w-7xl space-y-4 mt-10 py-6 mb-10">
       <div>
         <h2 className="text-xl font-bold">সব পণ্য</h2>
-        <p className="text-sm text-gray-500">নিত্যপ্রয়োজনীয় পণ্যের আজকের বাজারদর</p>
+        <p className="text-sm text-gray-500">মোট {products.length.toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে</p>
       </div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
-          <Link key={product.id} href={`/products/${product.slug}`} className="rounded-xl border border-base-300 bg-base-100 p-4 transition hover:border-green-600">
+          <Link key={product.id} href={`/products/${product.slug}`} className="rounded-xl border border-base-300 bg-base-100 p-4 transition hover:-translate-y-1 hover:border-green-600">
             <div className="flex items-center gap-3">
               <span className="rounded-xl bg-base-200 p-3 text-2xl">{product.image}</span>
               <div>

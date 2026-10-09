@@ -15,7 +15,7 @@ interface IProduct {
 }
 
 const PriceIncreased = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products")
+  const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products")
   const products: IProduct[] = await res.json()
 
   const priceIncreased = products.filter((product) => product.change.dir === "up").sort((a, b) => b.change.pct - a.change.pct).slice(0, 6)
@@ -25,7 +25,7 @@ const PriceIncreased = async () => {
       <h2 className="text-xl font-bold"><span className="text-red-600">▲</span> আজ দাম বেড়েছে</h2>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {priceIncreased.map((product) => (
-          <Link key={product.id} href={`/products/${product.slug}`} className="rounded-xl border border-base-300 bg-base-100 p-4 transition hover:border-red-600">
+          <Link key={product.id} href={`/products/${product.slug}`} className="rounded-xl border border-base-300 bg-base-100 p-4 transition hover:-translate-y-1 hover:border-green-600">
             <div className="flex items-center gap-3">
               <span className="rounded-xl bg-base-300 p-2 text-2xl">{product.image}</span>
               <div>

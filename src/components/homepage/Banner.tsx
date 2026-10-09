@@ -1,5 +1,4 @@
 import BannerImg from "@/assets/bazar-hero.png"
-import Link from "next/link";
 import Image from "next/image";
 
 export default function Banner() {

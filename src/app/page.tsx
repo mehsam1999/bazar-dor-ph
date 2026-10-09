@@ -6,6 +6,10 @@ import PriceIncreased from "@/components/homepage/priceIncreased";
 
 
 
+
+
+
+
 export default function Home() {
   return (
     <div>

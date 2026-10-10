@@ -53,7 +53,7 @@ const ProductDetails = async ({ params }: { params: Promise<{ productsId: string
             <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-[#f0f5f0] text-3xl">{product.image || product.categoryIcon}</div>
             <div>
               <h1 className="text-xl font-bold text-[#202b23] sm:text-2xl">{product.nameBn}</h1>
-              <p className="mt-1 text-xs text-gray-500">প্রতি {product.unit} · {product.categoryNameBn}</p>
+              <p className="mt-1 text-xs text-gray-500">প্রতি {product.unit === "kg" ? "কেজি" : product.unit === "litre" ? "লিটার" : product.unit === "dozen" ? "ডজন" : product.unit === "piece" ? "টি" : product.unit} · {product.categoryNameBn}</p>
               <p className="mt-2 text-xs text-gray-600">গতকালের তুলনায় আজকের দাম {product.change.dir === "up" ? "বেড়েছে" : product.change.dir === "down" ? "কমেছে" : "অপরিবর্তিত"} - {product.change.pct.toLocaleString("bn-BD")}%</p>
             </div>
           </div>

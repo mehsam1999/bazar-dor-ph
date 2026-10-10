@@ -47,7 +47,7 @@ const CategoryProductList = ({ products }: { products: IProduct[] }) => {
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f0f5f0] text-2xl">{product.image || product.categoryIcon}</div>
               <div>
                 <h2 className="font-semibold text-[#202b23]">{product.nameBn}</h2>
-                <p className="text-xs text-gray-500">প্রতি {product.unit}</p>
+                <p className="text-xs text-gray-500">প্রতি {product.unit === "kg" ? "কেজি" : product.unit === "litre" ? "লিটার" : product.unit === "dozen" ? "ডজন" : product.unit === "piece" ? "টি" : product.unit}</p>
               </div>
             </div>
 

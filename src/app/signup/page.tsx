@@ -31,6 +31,18 @@ const SignUpPage = () => {
     }
   }
 
+  const handleGoogleSignUp= async()=>{
+    await authClient.signIn.social({
+    provider: "google",
+  });
+  }
+  
+  const handleGithubSignUp= async()=>{
+    await authClient.signIn.social({
+    provider: "github",
+  });
+  }
+
   return (
     <div className="my-12 flex flex-1 items-center justify-center bg-[#f0f5f0] px-4 py-6">
       <div className="w-full max-w-83">
@@ -71,10 +83,10 @@ const SignUpPage = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-2">
-            <button type="button" className="btn h-9 min-h-0 border border-[#e0e8e0] bg-transparent px-2 text-[10px] font-medium text-[#202b23] hover:bg-gray-100">
+            <button onClick={handleGoogleSignUp} type="button" className="btn h-9 min-h-0 border border-[#e0e8e0] bg-transparent px-2 text-[10px] font-medium text-[#202b23] hover:bg-gray-100">
               <FcGoogle className="shrink-0 text-sm" /> Google দিয়ে চালিয়ে যান
             </button>
-            <button type="button" className="btn h-9 min-h-0 border border-[#e0e8e0] bg-transparent px-2 text-[10px] font-medium text-[#202b23] hover:bg-gray-100">
+            <button onClick={handleGithubSignUp} type="button" className="btn h-9 min-h-0 border border-[#e0e8e0] bg-transparent px-2 text-[10px] font-medium text-[#202b23] hover:bg-gray-100">
               <FaGithub className="shrink-0 text-sm" /> GitHub দিয়ে চালিয়ে যান
             </button>
           </div>

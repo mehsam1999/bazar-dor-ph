@@ -1,16 +1,20 @@
 "use client"
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FaChevronDown, FaSignOutAlt, FaUser } from "react-icons/fa";
 
 const UserInfo = () => {
+    const router = useRouter();
     const {data: session} = authClient.useSession()
     const user = session?.user
     // console.log(user)
     const handleSignOut = async() =>{
         await authClient.signOut();
         toast.success("সফলভাবে সাইন আউট করেছেন!")
+        router.push("/")
+        router.refresh()
     }
     
     return (
@@ -57,7 +61,7 @@ const UserInfo = () => {
                     </li>
 
                     <li>
-                        <Link href="/profile" className="rounded-xl py-3">
+                        <Link href="/profile" className="rounded-xl py-3 mr-2">
                         <FaUser className="text-gray-500" />
                         আমার প্রোফাইল
                         </Link>
@@ -66,7 +70,7 @@ const UserInfo = () => {
                     <li>
                         <button
                         onClick={handleSignOut}
-                        className="rounded-xl py-3 text-red-600 hover:bg-red-50 hover:text-red-700"
+                        className="rounded-xl py-3 text-red-600 hover:bg-red-50 hover:text-red-700 mr-2"
                         >
                         <FaSignOutAlt />
                         সাইন আউট

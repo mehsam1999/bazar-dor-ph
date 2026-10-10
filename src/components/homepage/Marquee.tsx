@@ -13,7 +13,7 @@ interface IProducts {
     };
 }
 const Marquee = async () => {
-    const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products");
+    const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products");
     const products:IProducts[] = await res.json();
 
     return (

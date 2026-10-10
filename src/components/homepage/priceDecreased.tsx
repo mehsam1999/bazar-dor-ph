@@ -14,7 +14,7 @@ interface IProduct {
 }
 
 const PriceDecreased = async () => {
-  const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products")
+  const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products")
   const products: IProduct[] = await res.json()
 
   const priceDecreased = products.filter((product) => product.change.dir === "down").sort((a, b) => a.change.pct - b.change.pct).slice(0, 6)

@@ -7,7 +7,7 @@ interface INavLinks{
 }
 
 const NavLinks = async () => {
-    const res = await fetch("https://api.api-store.workers.dev/api/bazardor/categories")
+    const res = await fetch("https://openapi.programming-hero.com/api/bazardor/categories")
     const data = await res.json()
     // console.log(data)
     const navs: INavLinks[] = data

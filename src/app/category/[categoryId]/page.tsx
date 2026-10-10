@@ -18,7 +18,7 @@ interface IProduct {
 
 const CategoryProducts = async ({ params }: { params: Promise<{ categoryId: string }> }) => {
   const { categoryId } = await params
-  const res = await fetch(`https://api.api-store.workers.dev/api/bazardor/products?category=${categoryId}`)
+  const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`)
   const data: IProduct[] = await res.json()
   const category = data[0]
 

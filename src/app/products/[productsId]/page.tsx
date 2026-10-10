@@ -30,7 +30,7 @@ interface IProduct {
 
 const ProductDetails = async ({ params }: { params: Promise<{ productsId: string }> }) => {
   const { productsId } = await params
-  const res = await fetch(`https://api.api-store.workers.dev/api/bazardor/products/${productsId}`)
+  const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products/${productsId}`)
   const product: IProduct = await res.json()
   const prices = product.markets ?? []
   const minPrice = prices.length ? Math.min(...prices.map((market) => market.min)) : 0

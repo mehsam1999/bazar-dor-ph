@@ -1,11 +1,38 @@
+"use client"
 
+import { authClient } from "@/lib/auth-client"
 import Link from "next/link"
+import { redirect } from "next/navigation"
+import toast from "react-hot-toast"
 import { FaGithub } from "react-icons/fa"
 import { FcGoogle } from "react-icons/fc"
 
 const SignUpPage = () => {
+  const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const user = Object.fromEntries(formData.entries()) as { name: string, email: string, password: string, confirmPassword: string}
+    // console.log(user)
+
+    const { data, error } = await authClient.signUp.email({
+      ...user,
+      callbackURL: "/"
+    })
+
+    if (data) {
+      console.log(data)
+      toast.success("আপনার অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!")
+      redirect("/")
+    }
+
+    if (error) {
+      toast.error("অ্যাকাউন্ট তৈরি করা যায়নি। আবার চেষ্টা করুন।")
+      console.log(error)
+    }
+  }
+
   return (
-    <div className="flex flex-1 items-center justify-center bg-[#f0f5f0] px-4 py-6 my-12">
+    <div className="my-12 flex flex-1 items-center justify-center bg-[#f0f5f0] px-4 py-6">
       <div className="w-full max-w-83">
         <div className="mb-5 text-center">
           <h1 className="text-2xl font-bold text-[#202b23]">অ্যাকাউন্ট তৈরি করুন</h1>
@@ -13,7 +40,7 @@ const SignUpPage = () => {
         </div>
 
         <section className="rounded-xl border border-[#e0e8e0] bg-[#fbfdfb] p-4">
-          <form className="space-y-3">
+          <form onSubmit={onSubmit} className="space-y-3">
             <div>
               <label htmlFor="name" className="mb-1 block text-xs font-medium text-[#202b23]">নাম</label>
               <input id="name" name="name" type="text" placeholder="যেমন: রহিম উদ্দিন" required className="input input-bordered h-9 w-full border-[#e0e8e0] bg-transparent text-xs outline-none focus:border-green-600" />

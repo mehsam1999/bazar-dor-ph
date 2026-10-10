@@ -2,6 +2,7 @@ import Logo from "@/assets/logo-icon.png";
 import Image from "next/image";
 import Link from "next/link";
 import NavLinks from "./NavLinks";
+import UserInfo from "./UserInfo";
 
 
 export default function Navbar() {
@@ -21,16 +22,12 @@ export default function Navbar() {
                             <p className="text-[10px] text-gray-800 sm:text-xs">{date}</p>
                         </div>
                     </Link>
-                    <div className="flex items-center gap-3 sm:gap-6">
-                    <Link href="/signin" className="whitespace-nowrap text-xs font-medium text-gray-800 transition hover:text-green-700 sm:text-sm">সাইন ইন</Link>
-
-                    <Link href="/signup" className="whitespace-nowrap rounded-lg bg-green-700 px-3 py-2 text-xs font-semibold text-white shadow-md transition hover:bg-green-800 sm:px-5 sm:py-2.5 sm:text-sm">সাইন আপ</Link>
-                    </div>
+                    <UserInfo></UserInfo>
 
                 </div>
             </nav>
             <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
-            <NavLinks />
+                <NavLinks />
             </div>
         </div>
         

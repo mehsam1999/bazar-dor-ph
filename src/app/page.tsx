@@ -3,12 +3,6 @@ import Banner from "@/components/homepage/Banner";
 import PriceDecreased from "@/components/homepage/priceDecreased";
 import PriceIncreased from "@/components/homepage/priceIncreased";
 
-
-
-
-
-
-
 export default function Home() {
   return (
     <div>

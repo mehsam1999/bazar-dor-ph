@@ -1,4 +1,5 @@
 import CategoryProductList from "@/components/categoryDetails/CategoryProductList"
+import { notFound } from "next/navigation"
 
 interface IProduct {
   id: number
@@ -21,6 +22,9 @@ const CategoryProducts = async ({ params }: { params: Promise<{ categoryId: stri
   const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`)
   const data: IProduct[] = await res.json()
   const category = data[0]
+  if(!category){
+    notFound()
+  }
 
   return (
     <main className="min-h-screen bg-[#f0f5f0] px-4 py-6">

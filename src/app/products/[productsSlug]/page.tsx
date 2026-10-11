@@ -1,5 +1,6 @@
 
 import Link from "next/link"
+import { notFound } from "next/navigation"
 
 interface IMarket {
   market: string
@@ -39,7 +40,8 @@ const ProductDetails = async ({ params }: { params: Promise<{ productsSlug: stri
   const matchedProduct  = products.find((item) => item.slug === productsSlug)
 
   if (!matchedProduct) {
-    return <div className="p-6 text-center text-gray-500">পণ্য পাওয়া যায়নি।</div>
+    notFound()
+  
   }
 
   const res = await fetch(`${url}/products/${matchedProduct.id}`)

@@ -3,6 +3,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { FaArrowLeft } from "react-icons/fa"
 
 interface IProduct {
   id: number
@@ -64,7 +65,14 @@ const CategoryProductList = ({ products }: { products: IProduct[] }) => {
         ))}
       </div>
 
-      {products.length === 0 && <p className="rounded-2xl bg-white py-10 text-center text-gray-500">এই ক্যাটাগরিতে কোনো পণ্য পাওয়া যায়নি।</p>}
+      {products.length === 0 && 
+      <div>
+        <p className="rounded-2xl bg-white py-10 text-center text-gray-500">এই ক্যাটাগরিতে কোনো পণ্য পাওয়া যায়নি।</p>
+        <div className="mt-10 text-center">
+          <Link href="/" className="text-gray-500 hover:text-green-700 flex items-center gap-2 justify-center"><FaArrowLeft className="text-xs" /> হোম পেজে ফিরে যান</Link>
+        </div>
+      </div>
+      }
     </>
   )
 }

@@ -4,7 +4,7 @@ import { authClient } from "@/lib/auth-client"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
-import { FaGithub } from "react-icons/fa"
+import { FaArrowLeft, FaGithub } from "react-icons/fa"
 import { FcGoogle } from "react-icons/fc"
 
 const SignUpPage = () => {
@@ -96,8 +96,8 @@ const SignUpPage = () => {
           </p>
         </section>
 
-        <div className="mt-4 text-center">
-          <Link href="/" className="text-xs text-gray-500 hover:text-green-700">← হোম পেজে ফিরে যান</Link>
+        <div className="mt-10 text-center">
+          <Link href="/" className="text-gray-500 hover:text-green-700 flex items-center gap-2 justify-center"><FaArrowLeft className="text-xs" /> হোম পেজে ফিরে যান</Link>
         </div>
       </div>
     </div>

@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💻 Project Name
 
-## Getting Started
+**বাজার দর (BazarDor)**
 
-First, run the development server:
+## 🔗 Live Website Link
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+https://bazar-dor-com.vercel.app/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📝 Description
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+বাজার দর (BazarDor) is a Bangla-based market price tracking web application that helps users explore daily prices of essential commodities in Bangladesh. Users can browse products by category, compare prices, view price changes, and explore detailed market price information through a simple and responsive interface. The application aims to make everyday market price information more accessible and easier to understand.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Technologies Used
 
-## Learn More
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- DaisyUI
+- Better Auth
+- MongoDB Atlas Database
+- React Icons
+- React Hot Toast
+- react-marquee-text
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Product Exploration and Categories:** Users can explore a variety of essential products on a responsive product grid and can also explore products by category. All the product cards contain necessary details like Bangla name of the product, image, current price, unit, and a price change percentage. From the main page, users can click on individual product pages for more information about the products they have chosen.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Daily Price Tracking:** Users can see today's prices and see price data from yesterday, last week and past month (if available). This enables the user to be acquainted with the price fluctuation over time, essential commodity price fluctuation and better able to make better purchasing decisions.
 
-## Deploy on Vercel
+- **Price Increase and Decrease Highlights:** The home page has separate categories for products which have risen or fallen in price. It indicates the highest and lowest six price movers based on percentage of change. The color-coded arrows and percentage indicators allow users to quickly see price trends.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Detailed Market Price Comparison:** Users can view market-wise information in detail, such as minimum & maximum prices of a product in available markets. Summary data of minimum, maximum and average product prices is also provided on the product details page which enables the user to compare prices across markets and identify how prices may be cheaper when purchasing.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Authentication and Responsive UI:** Users can register and log in with email and password, and the supported Google and GitHub logins.Users can register and log in via email and password as well as supported Google and GitHub logins. Users who are logged in can view and edit their profile details, and log out securely. It also includes a responsive interface that uses Next.js, Tailwind CSS, and DaisyUI, a scrolling price marquee, loading indicators, toast notifications, custom 404 pages to enhance user experience and smooth browsing.

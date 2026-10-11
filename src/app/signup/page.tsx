@@ -2,12 +2,13 @@
 
 import { authClient } from "@/lib/auth-client"
 import Link from "next/link"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
 import { FaGithub } from "react-icons/fa"
 import { FcGoogle } from "react-icons/fc"
 
 const SignUpPage = () => {
+  const router = useRouter()
   const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
     e.preventDefault()
     const formData = new FormData(e.target)
@@ -16,14 +17,13 @@ const SignUpPage = () => {
 
     const { data, error } = await authClient.signUp.email({
       ...user,
-      callbackURL: "/"
+      callbackURL: "/",
     })
 
     if (data) {
-      console.log(data)
-      toast.success("আপনার অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!")
-      redirect("/")
-    }
+    toast.success("আপনার অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!")
+    router.push("/signin")
+  }
 
     if (error) {
       toast.error("অ্যাকাউন্ট তৈরি করা যায়নি। আবার চেষ্টা করুন।")
@@ -36,7 +36,7 @@ const SignUpPage = () => {
     provider: "google",
   });
   }
-  
+
   const handleGithubSignUp= async()=>{
     await authClient.signIn.social({
     provider: "github",
@@ -44,7 +44,7 @@ const SignUpPage = () => {
   }
 
   return (
-    <div className="my-12 flex flex-1 items-center justify-center bg-[#f0f5f0] px-4 py-6">
+    <div className="my-12 flex flex-1 items-center justify-center px-4 py-6">
       <div className="w-full max-w-83">
         <div className="mb-5 text-center">
           <h1 className="text-2xl font-bold text-[#202b23]">অ্যাকাউন্ট তৈরি করুন</h1>

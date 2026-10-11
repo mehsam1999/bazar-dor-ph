@@ -25,17 +25,32 @@ interface IProduct {
     dir: "up" | "down" | "flat"
     pct: number
   }
-  markets: IMarket[]
+  markets?: IMarket[]
 }
 
-const ProductDetails = async ({ params }: { params: Promise<{ productsId: string }> }) => {
-  const { productsId } = await params
-  const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products/${productsId}`)
+const url = "https://openapi.programming-hero.com/api/bazardor"
+
+const ProductDetails = async ({ params }: { params: Promise<{ productsSlug: string }> }) => {
+  const { productsSlug } = await params
+
+  const listRes = await fetch(`${url}/products`)
+  const products: IProduct[] = await listRes.json()
+
+  const matchedProduct  = products.find((item) => item.slug === productsSlug)
+
+  if (!matchedProduct) {
+    return <div className="p-6 text-center text-gray-500">পণ্য পাওয়া যায়নি।</div>
+  }
+
+  const res = await fetch(`${url}/products/${matchedProduct.id}`)
   const product: IProduct = await res.json()
+
   const prices = product.markets ?? []
   const minPrice = prices.length ? Math.min(...prices.map((market) => market.min)) : 0
   const maxPrice = prices.length ? Math.max(...prices.map((market) => market.max)) : 0
   const avgPrice = prices.length ? prices.reduce((sum, market) => sum + (market.min + market.max) / 2, 0) / prices.length : 0
+
+  const unitName = product.unit === "kg" ? "কেজি" : product.unit === "litre" ? "লিটার" : product.unit === "dozen" ? "ডজন" : product.unit === "piece" ? "টি" : product.unit
 
   return (
     <div className="min-h-screen px-3 py-5 sm:px-5">
@@ -53,7 +68,7 @@ const ProductDetails = async ({ params }: { params: Promise<{ productsId: string
             <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-[#f0f5f0] text-3xl">{product.image || product.categoryIcon}</div>
             <div>
               <h1 className="text-xl font-bold text-[#202b23] sm:text-2xl">{product.nameBn}</h1>
-              <p className="mt-1 text-xs text-gray-500">প্রতি {product.unit === "kg" ? "কেজি" : product.unit === "litre" ? "লিটার" : product.unit === "dozen" ? "ডজন" : product.unit === "piece" ? "টি" : product.unit} · {product.categoryNameBn}</p>
+              <p className="mt-1 text-xs text-gray-500">প্রতি {unitName} · {product.categoryNameBn}</p>
               <p className="mt-2 text-xs text-gray-600">গতকালের তুলনায় আজকের দাম {product.change.dir === "up" ? "বেড়েছে" : product.change.dir === "down" ? "কমেছে" : "অপরিবর্তিত"} - {product.change.pct.toLocaleString("bn-BD")}%</p>
             </div>
           </div>
@@ -61,7 +76,7 @@ const ProductDetails = async ({ params }: { params: Promise<{ productsId: string
           <div className="flex shrink-0 flex-col items-center justify-center rounded-xl bg-[#f0f5f0] px-6 py-3 sm:min-w-28">
             <p className="text-xs text-gray-500">বর্তমান দাম</p>
             <p className="text-2xl font-bold text-[#202b23]">{product.today.toLocaleString("bn-BD")}</p>
-            <p className="text-xs text-gray-500">টাকা / {product.unit === "kg" ? "কেজি" : product.unit}</p>
+            <p className="text-xs text-gray-500">টাকা / {unitName}</p>
             <p className={`mt-1 text-xs font-semibold ${product.change.dir === "up" ? "text-red-600" : product.change.dir === "down" ? "text-green-600" : "text-gray-500"}`}>
               {product.change.dir === "up" ? "▲" : product.change.dir === "down" ? "▼" : "—"} {product.change.pct.toLocaleString("bn-BD")}%
             </p>
@@ -87,7 +102,7 @@ const ProductDetails = async ({ params }: { params: Promise<{ productsId: string
             <div className="rounded-xl border border-[#e0e8e0] p-4">
               <p className="text-xs text-gray-600">গড় দাম</p>
               <p className="mt-1 text-xl font-bold text-green-700">{Math.round(avgPrice).toLocaleString("bn-BD")} টাকা</p>
-              <p className="mt-1 text-[11px] text-gray-500">প্রতি {product.unit === "kg" ? "কেজি" : product.unit}-এর হিসাবে</p>
+              <p className="mt-1 text-[11px] text-gray-500">প্রতি {unitName}-এর হিসাবে</p>
             </div>
           </div>
 
@@ -104,21 +119,14 @@ const ProductDetails = async ({ params }: { params: Promise<{ productsId: string
                   <th className="px-3 py-3 text-right font-medium">গড়</th>
                 </tr>
               </thead>
-
               <tbody>
                 {prices.map((market, index) => (
                   <tr key={`${market.market}-${market.division}`} className={`border-t border-[#e0e8e0] ${index % 2 === 0 ? "bg-[#fbfdfb]" : "bg-[#f0f5f0]"}`}>
                     <td className="px-3 py-3">{market.market}</td>
                     <td className="px-3 py-3">{market.division}</td>
-                    <td className="px-3 py-3 text-right">{market.min.toLocaleString("bn-BD")} টাকা</td>
-                    <td className="px-3 py-3 text-right">{market.max.toLocaleString("bn-BD")} টাকা</td>
-                    <td className="whitespace-nowrap px-3 py-3 text-right font-medium">
-                        {((market.min + market.max) / 2).toLocaleString("bn-BD", {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        })} টাকা
-                    </td>
-
+                    <td className="whitespace-nowrap px-3 py-3 text-right">{market.min.toLocaleString("bn-BD")} টাকা</td>
+                    <td className="whitespace-nowrap px-3 py-3 text-right">{market.max.toLocaleString("bn-BD")} টাকা</td>
+                    <td className="whitespace-nowrap px-3 py-3 text-right font-medium">{((market.min + market.max) / 2).toLocaleString("bn-BD", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} টাকা</td>
                   </tr>
                 ))}
               </tbody>

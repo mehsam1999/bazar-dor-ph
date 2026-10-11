@@ -40,7 +40,7 @@ const SignInPage = () => {
   }
 
   return (
-    <div className="flex flex-1 items-center justify-center bg-[#f0f5f0] px-4 py-6 my-12">
+    <div className="flex flex-1 items-center justify-center px-4 py-6 my-12">
       <div className="w-full max-w-83">
         <div className="mb-5 text-center">
           <h1 className="text-2xl font-bold text-[#202b23]">সাইন ইন</h1>

@@ -1,10 +1,8 @@
-import Logo from "@/assets/logo-icon.png";
-import Image from "next/image";
 import Link from "next/link";
 import NavLinks from "./NavLinks";
 import UserInfo from "./UserInfo";
 
-
+export const dynamic = 'force-dynamic';
 export default function Navbar() {
     const date = new Date().toLocaleDateString("bn-BD", {dateStyle: "full"})
     return (

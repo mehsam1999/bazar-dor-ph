@@ -1,6 +1,7 @@
 import BannerImg from "@/assets/bazar-hero.png"
 import Image from "next/image";
 
+export const dynamic = 'force-dynamic';
 export default function Banner() {
     const date = new Date().toLocaleDateString("bn-BD", {dateStyle: "full"})
     return (

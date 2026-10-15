@@ -54,16 +54,19 @@ const AllProducts = () => {
 
   return (
     <section id="সব-পণ্য" className="mx-auto mt-10 mb-10 max-w-7xl space-y-4 py-6">
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <div>
           <h2 className="text-xl font-bold">সব পণ্য</h2>
           <p className="text-sm text-gray-500">মোট {products.length.toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে</p>
         </div>
-        <select id="sort" value={sort} onChange={(e) => setSort(e.target.value)} className="select select-bordered select-sm w-42 appearance-none text-base">
-          <option value="default">ডিফল্ট</option>
-          <option value="price-low">দাম: কম থেকে বেশি</option>
-          <option value="price-high">দাম: বেশি থেকে কম</option>
-        </select>
+        <div className="flex gap-2 items-center">
+          <label htmlFor="sort" className="text-sm text-gray-500">সাজান</label>
+          <select id="sort" value={sort} onChange={(e) => setSort(e.target.value)} className="select select-bordered select-sm w-42 appearance-none text-base">
+            <option value="default">ডিফল্ট</option>
+            <option value="price-low">দাম: কম থেকে বেশি</option>
+            <option value="price-high">দাম: বেশি থেকে কম</option>
+          </select>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
